@@ -32,6 +32,7 @@ public final class ControllerFactory implements IController{
 	
 	private String dataFile;
 	private String metadataFile;
+	private ArrayList<YearDTO> yearsList;
 	
 	
     // Private constructor to prevent instantiation
@@ -92,9 +93,23 @@ public final class ControllerFactory implements IController{
 				System.arraycopy(parts,1,names,0,parts.length -1);	
 				
 				String line;
+				int year; 
 				while((line = br.readLine()) != null) {	
 					parts = line.split(delimiter);
-					 
+					year = Integer.valueOf(parts[0]);
+
+					MeasurementDTO m;
+					ArrayList<MeasurementDTO> measurementsList;
+					
+					for(int i = 1; i < names.length + 1; i++){
+						m = new MeasurementDTO(year, names[i-1], Double.valueOf(parts[i]));
+						measurementsList.add(m);
+					}
+					
+					String top10 = parts[names.length+1].replace("\"","");
+					top10 = top10.split(",");// edw exoume ta top10 xwris kanenan allon xarakthra px "/"", h ","
+
+					
 				}
 				
 				
